@@ -1,8 +1,7 @@
 // import { useState } from "react";
 import axios from "axios";
-import { Cursor } from "mongoose";
+
 import { useState } from "react";
-import { Alignment } from "react-data-table-component";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -13,6 +12,7 @@ export default function Login() {
   };
   const handSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const response = await axios.post(
         "http://localhost:3000/api/auto/login",
