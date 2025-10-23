@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
 import { AdminDashbord } from "./Pages/AdminDashbord"
-import { Login } from "./Pages/Login"
+import Login from "./Pages/Login";
+
 
 
 export const App = () => {
