@@ -1,36 +1,32 @@
-// import { useState } from "react";
-import axios from "axios";
-
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../api/api.js";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const handleChange = (e) => {
-    setEmail(e.target.value);
-    setPassword(e.target.value);
-  };
-  const handSubmit = async (e) => {
-    e.preventDefault();
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/auto/login",
-        {
-          email,
-          password,
-        }
-      );
-      console.log(response);
-    } catch (error) {
-      console.log(error);
+      const res = await api.post("/", formData);
+      localStorage.setItem("token", res.data.token);
+      alert("✅ Login successful!");
+      navigate("/"); // redirect after login
+    } catch (err) {
+      alert(err.response?.data?.error || " Login failed");
     }
   };
+
   const styles = {
     total_containers: {
       display: "flex",
       justifyContent: "center",
-      Alignment: "center",
+      alignItems: "center",
       width: "350px",
       padding: "20px",
       borderRadius: "10px",
@@ -56,7 +52,7 @@ export default function Login() {
       outline: "none",
       borderRadius: "5px",
       textAlign: "center",
-      fontFamily: "monolic",
+      fontFamily: "monospace",
       fontWeight: "bold",
       border: "1px solid #e9e2e2ff",
     },
@@ -68,8 +64,8 @@ export default function Login() {
       fontSize: "20px",
       backgroundColor: "green",
       color: "white",
-
       width: "100%",
+      cursor: "pointer",
     },
   };
 
@@ -94,7 +90,7 @@ export default function Login() {
               color: "#190166",
             }}
           >
-            Employee management System
+            Employee Management System
           </h1>
           <div style={styles.FormContainer}>
             <h1
@@ -108,14 +104,13 @@ export default function Login() {
               Login
             </h1>
             <hr />
-            <form style={styles.form} onSubmit={handSubmit}>
+            <form style={styles.form} onSubmit={handleSubmit}>
               <label>Email:</label>
               <input
                 type="email"
                 name="email"
+                value={formData.email}
                 onChange={handleChange}
-                // value={formData.email}
-
                 required
                 style={styles.input}
               />
@@ -123,20 +118,25 @@ export default function Login() {
               <input
                 type="password"
                 name="password"
-                placeholder="********"
-                // value={formData.password}
+                value={formData.password}
                 onChange={handleChange}
+                placeholder="********"
                 required
                 style={styles.input}
               />
-              <div className=" p-1">
+              <div className="p-1">
                 <input type="checkbox" style={{ padding: "5px" }} />
-                <a href="" style={{ color: "dodgerblue", paddingLeft: "10px" }}>
+                <a
+                  href="#"
+                  style={{ color: "dodgerblue", paddingLeft: "10px" }}
+                >
                   Forgot password
                 </a>
               </div>
+              <button type="submit" style={styles.btn}>
+                Login
+              </button>
             </form>
-            <button style={styles.btn}>Login</button>
           </div>
         </div>
       </div>
