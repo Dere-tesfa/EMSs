@@ -1,38 +1,29 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import Users from "./models/User.js";
 import dotenv from "dotenv";
+import User from "./models/User.js";
+import connectToDatabase from "./database.js"; // 👈 match the export
+
 dotenv.config();
 
-const MONGO_URI = process.env.MONGO_URI;
-
 const userRegister = async () => {
-    try {
+  try {
+    await connectToDatabase();
 
-        await mongoose.connect(MONGO_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        console.log("✅ Connected to MongoDB");
+    const hashedPassword = await bcrypt.hash("password123", 10);
+    const user = new User({
+      name: "Admin",
+      email: "admin@example.com",
+      password: hashedPassword,
+    });
+    await user.save();
 
-        // ✅ Step 3: Hash the password
-        const hashpassword = await bcrypt.hash("admin", 10);
-
-        // ✅ Step 4: Create new admin user
-        const newUser = new Users({
-            name: "Admin",
-            email: "admiaan@gmail.com",
-            password: hashpassword,
-            role: "Admin",
-        });
-
-        //Step 5: Save to DB
-        await newUser.save();
-        console.log("✅ Admin user created successfully!");
-
-    } catch (error) {
-        console.error(" Error seeding user:", error.message);
-    }
+    console.log("✅ User seeded successfully!");
+    process.exit(0);
+  } catch (error) {
+    console.error("❌ Error seeding user:", error);
+    process.exit(1);
+  }
 };
 
 userRegister();
