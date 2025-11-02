@@ -1,14 +1,15 @@
 .totaSiderBar{
     height: 100vh;
-    background: rgb(81, 3, 142);
+    background: rgb(247, 243, 248);
     width: 250px;
+    box-shadow: 2px 2px 20px rgba(0,0,0,0.7);
 }
 h2{
     display: flex;
     align-items: center;
     margin-left: 2rem;
     font-size: 25px;
-    color: rgb(254, 254, 254);
+    color: rgb(14, 1, 33);
     font-weight: 600;
     padding: 10px;
 }
