@@ -14,7 +14,7 @@ export const AdminSiderbar = () => {
       <div className="sideBar">
         <NavLink to="/">
           <h2>
-            <MdDashboard />
+            <MdDashboard className="icon_dash" />
             <span>Dashboard</span>
           </h2>
         </NavLink>
