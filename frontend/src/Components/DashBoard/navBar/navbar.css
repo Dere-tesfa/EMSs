@@ -1,0 +1,22 @@
+.nav__bar{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #21292e;
+    box-shadow: 10px 5px 5px rgb(221, 210, 210);
+}
+h1{
+    font-size: 24px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+   color: rgb(255, 255, 255);
+    
+}
+button{
+    padding: 8px 15px;
+    background-color: rgb(112, 2, 208);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
