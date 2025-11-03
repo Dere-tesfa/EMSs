@@ -1,7 +1,6 @@
 import { DashBoardOverView } from "../Components/DashBoard/dashBoardOverview/DashBoardOverView";
 import { NavBar } from "../Components/DashBoard/navBar/NavBar";
 import { AdminSiderbar } from "../Components/DashBoard/sidebar/AdminSiderbar";
-
 export const AdminDashbord = () => {
   return (
     <div>

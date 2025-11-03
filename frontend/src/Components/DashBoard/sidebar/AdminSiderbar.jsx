@@ -12,7 +12,7 @@ export const AdminSiderbar = () => {
   return (
     <div className="totaSiderBar">
       <div className="sideBar">
-        <NavLink to="/">
+        <NavLink to="/dashboard">
           <h2>
             <MdDashboard className="icon_dash" />
             <span>Dashboard</span>

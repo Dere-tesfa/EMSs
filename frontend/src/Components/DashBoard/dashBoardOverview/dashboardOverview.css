@@ -18,8 +18,8 @@ h3{
 .icons{
     font-size: 40px;
     color: #275fda;
-    
-   
+    font-weight: bold;
+
 }
 .overView{
     display: flex;
