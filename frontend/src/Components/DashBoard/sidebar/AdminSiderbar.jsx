@@ -12,15 +12,15 @@ export const AdminSiderbar = () => {
   return (
     <div className="totaSiderBar">
       <div className="sideBar">
-        <NavLink to="/dashboard">
+        <NavLink to="/dashboard/overview">
           <h2>
-            <MdDashboard className="icon_dash" />
+            <MdDashboard className="" />
             <span>Dashboard</span>
           </h2>
         </NavLink>
       </div>
       <div className="sideBar">
-        <NavLink to="/">
+        <NavLink to="/dashboard/employee">
           <h2>
             <FaUsers />
             <span>Employees</span>
